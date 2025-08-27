@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مذكرتي الرومانسية</title>
+<style>
+body, html {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+text-align: center;
+background-color: #000;
+color: #fff;
+}
+.page {
+display: none;
+padding: 50px 20px;
+}
+.active {
+display: block;
+}
+h1 {
+font-size: 50px;
+color: #ff69b4;
+margin-bottom: 50px;
+}
+button {
+font-size: 20px;
+padding: 15px 30px;
+border: none;
+border-radius: 10px;
+background-color: #ff69b4;
+color: white;
+cursor: pointer;
+}
+button:hover {
+background-color: #ff85c1;
+}
+.text-container {
+max-width: 800px;
+margin: 20px auto;
+font-size: 18px;
+line-height: 1.6;
+color: #fff;
+}
+canvas {
+display: block;
+margin: 40px auto;
+background: transparent;
+}
+</style>
+</head>
+<body>
+
+<!-- الصفحة الأولى -->
+<div id="page1" class="page active">
+<h1>هاي حبيبي سوسو</h1>
+<button onclick="goToPage2()">اضغط</button>
+</div>
+
+<!-- الصفحة الثانية -->
+<div id="page2" class="page">
+<div class="text-container">
+<p><strong>My love, SULAF</strong></p>
+<p>
+You are everything in my life. Every moment without you feels incomplete, and every smile of yours fills my heart with indescribable joy. I love you more than words can ever express. I love your soul, your smile, and the way you make everything around you beautiful. You are my wish, my support, and every beautiful dream in my life is tied to you.
+</p>
+<p>
+I love you not just because you’re amazing, but because you are you… the one who makes my days brighter and makes me believe that true love really exists. My heart belongs to you, my soul calls for you always, and I promise to love you sincerely, to protect you, and to stand by your side in every moment, because you are my love, my life, my everything. <br>
+<em>from: your baby REWAA</em>
+</p>
+</div>
+<canvas id="heartCanvas" width="500" height="500"></canvas>
+</div>
+
+<script>
+function goToPage2() {
+document.getElementById('page1').classList.remove('active');
+document.getElementById('page2').classList.add('active');
+}
+
+// رسم القلب تدريجيًا
+const canvas = document.getElementById('heartCanvas');
+const ctx = canvas.getContext('2d');
+ctx.strokeStyle = '#ff69b4';
+ctx.lineWidth = 2;
+
+let t = 0;
+function drawHeart() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.beginPath();
+for(let i = 0; i <= t; i+=0.01){
+let x = 250 + 16*Math.pow(Math.sin(i),3)*20;
+let y = 250 - (13*Math.cos(i)-5*Math.cos(2*i)-2*Math.cos(3*i)-Math.cos(4*i))*20;
+if(i === 0){
+ctx.moveTo(x,y);
+} else {
+ctx.lineTo(x,y);
+}
+}
+ctx.stroke();
+t += 0.05;
+if(t <= 2*Math.PI){
+requestAnimationFrame(drawHeart);
+}
+}
+drawHeart();
+</script>
+
+</body>
+</html>
+
